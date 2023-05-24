@@ -1,0 +1,24 @@
+#!/bin/bash
+
+############
+# Author: Manoj
+# Date: 24/05/2023
+#
+# This script outputs node health.
+# Version: v1
+##########
+
+set -x #debug mode it will show the command and show the output, better option than echo 
+set -e #exit the script if there is any error, one of the drawback of this command is that it will not error out when there is Pipe in the command 
+#set -e only checks if the last command was successful or not
+set -o #pipe fail to ensure command is not executed if any other command fail
+
+df -h
+free -g
+
+nproc
+
+#to check specific process, we need to get certain processes, we can use grep
+ps -ef | grep amazon | awk -F" " '{print 21}'
+
+#awk command is used to filter out the specific information from the string, for example from the Amazon string we only want to see the process ID
